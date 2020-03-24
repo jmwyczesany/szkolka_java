@@ -15,4 +15,6 @@ public class Krok1 {
     public static void hello(String name){
         LOG.log(Level.INFO, String.format("Hello, %s!%n", name));
     }
+
+
 }
