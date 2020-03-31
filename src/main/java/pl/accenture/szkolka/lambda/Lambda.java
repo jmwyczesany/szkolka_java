@@ -27,6 +27,7 @@ class Lambda {
         };
 
         InterfaceWithVoidMethod lambda1 = () -> System.out.println("lambda1");
+        lambda1.go();
 
         // TODO: 31.03.2020 1c anonimowa implementacja + lambda
         InterfaceWithStingMethod anonimowaimplementacja2 = new InterfaceWithStingMethod() {
@@ -37,6 +38,7 @@ class Lambda {
         };
 
         InterfaceWithStingMethod lambda2 = () -> "go";
+        System.out.println(lambda2.go());
 
         // TODO: 31.03.2020 1c anonimowa implementacja + lambda
         InterfaceWithStringMethodAndArgument anonimowaImplementacja3 = new InterfaceWithStringMethodAndArgument() {
@@ -47,7 +49,7 @@ class Lambda {
         };
 
         InterfaceWithStringMethodAndArgument anonimowaImplementacja4 = name -> name.toUpperCase();
-
+        System.out.println(anonimowaImplementacja4.go("dżadwiga"));
 
     }
 }
