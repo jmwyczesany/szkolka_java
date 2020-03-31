@@ -1,4 +1,7 @@
 package pl.accenture.szkolka.lambda;
+
+import lombok.Data;
+
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -26,13 +29,15 @@ class PredykatZadanieIndywidualne {
  */
 
         List<PersonZZadania> collect = people.stream()
-                .filter(nameStartsWithAPredicate.and(lastNameStartsWithBPredicate.and(ageUnder20Predicate)))
+                .filter(nameStartsWithAPredicate.and(lastNameStartsWithBPredicate.and(ageUnder20Predicate).
+                        and(p -> p.lastName.length() > 5)).negate())
                 .collect(Collectors.toList());
         collect.forEach(System.out::println);
     }
 }
 
 // done: 31.03.2020 1 - klasa person: name, lastName, age
+
 class PersonZZadania {
     String name;
     String lastName;
@@ -44,6 +49,11 @@ class PersonZZadania {
         this.age = age;
     }
 
+    // done: 31.03.2020 2 - predykaty w klasie imieNaA, nazwizkoNaB, wiekPowyzej20Lat
+    static Predicate<PersonZZadania> nameStartsWithAPredicate = person -> person.name.startsWith("A");
+    static Predicate<PersonZZadania> lastNameStartsWithBPredicate = person -> person.lastName.startsWith("B");
+    static Predicate<PersonZZadania> ageUnder20Predicate = person -> person.age > 20;
+
     @Override
     public String toString() {
         return "PersonZZadania{" +
@@ -52,9 +62,4 @@ class PersonZZadania {
                 ", age=" + age +
                 '}';
     }
-
-    // done: 31.03.2020 2 - predykaty w klasie imieNaA, nazwizkoNaB, wiekPowyzej20Lat
-    static Predicate<PersonZZadania> nameStartsWithAPredicate = person -> person.name.startsWith("A");
-    static Predicate<PersonZZadania> lastNameStartsWithBPredicate = person -> person.lastName.startsWith("B");
-    static Predicate<PersonZZadania> ageUnder20Predicate = person -> person.age > 20;
 }
